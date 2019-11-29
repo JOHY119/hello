@@ -5,14 +5,7 @@ import java.util.*;
 
 public class MapTest {
     public static void main(String[] args) {
-        Map<String, Employee> staff = new LinkedHashMap<>(128,0.75F, true){
-            @Override
-            protected boolean removeEldestEntry(Map.Entry<String, Employee> eldest) {
-                System.out.println("in remove eldest, size= "+size());
-                System.out.println(eldest);
-                return size()>2;
-            }
-        };
+        Map<String, Employee> staff = new HashMap<>();
 
         staff.put("144-25-5464", new Employee("Amy Lee"));
         staff.put("567-24-2546", new Employee("Harry Hacker"));
@@ -26,7 +19,7 @@ public class MapTest {
         System.out.println(staff.get("157-62-7935"));
 
         staff.forEach((k,v)-> System.out.println("key="+k+", value="+v));
-        SortedMap<Integer, String> stringSortedMap = new TreeMap<>();
+
 
 
 
