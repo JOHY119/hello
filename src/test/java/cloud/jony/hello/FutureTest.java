@@ -74,4 +74,22 @@ class MatchCounter implements Callable<Integer> {
             return false;
         }
     }
+
+    public static void main(String[] args) {
+        String directory = "/Users/johy";
+        String keyword="list";
+
+        MatchCounter matchCounter = new MatchCounter(new File(directory), keyword);
+        FutureTask<Integer> task = new FutureTask<>(matchCounter);
+        Thread t = new Thread(task);
+        t.start();
+
+        try {
+            System.out.println(task.get() + " matching files");
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException ignored) {
+        }
+
+    }
 }
